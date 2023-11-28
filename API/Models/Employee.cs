@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using API.Utilities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 
 namespace API.Models;
 
 [Table("tb_employees")]
-public class Employee
+public class Employee : BaseEntity
 {
     [Required, Column("employee_id", TypeName = "nvarchar(12)")]
     public string EmployeeID { get; set; }

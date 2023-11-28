@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Models;
 
 [Table("tb_roles")]
-public class Role
+public class Role : BaseEntity
 {
     [Required, Column("name", TypeName = "nvarchar(20)")]
     public string Name { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Models;
 
 [Table("job_history")]
-public class JobHistory
+public class JobHistory : BaseEntity
 {
     [Required, Column("employee_guid")]
     public Guid EmployeeGuid { get; set; }
