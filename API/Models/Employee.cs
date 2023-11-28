@@ -8,8 +8,6 @@ namespace API.Models;
 [Table("tb_employees")]
 public class Employee : BaseEntity
 {
-    [Required, Column("employee_id", TypeName = "nvarchar(12)")]
-    public string EmployeeID { get; set; }
 
     [Required, Column("first_name", TypeName = "nvarchar(50)")]
     public string FirstName { get; set; }

@@ -6,10 +6,10 @@ namespace API.Models;
 [Table("tb_jobs")]
 public class Job : BaseEntity
 {
-    [Required, Column("code")]
-    public int Code { get; set; }
+    [Required, Column("code", TypeName = "nvarchar(3)")]
+    public string Code { get; set; }
 
-    [Required, Column("name", TypeName = "nvarchar(20)")]
+    [Required, Column("name", TypeName = "nvarchar(50)")]
     public String Name { get; set; }
 
     [Required, Column("min_salary")]
