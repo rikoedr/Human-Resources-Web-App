@@ -12,9 +12,19 @@ namespace API.Repositories
             this.context = context;
         }
 
-        public TEntity? Create(Guid guid)
+        public TEntity? Create(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Set<TEntity>().Add(entity);
+                context.SaveChanges();
+
+                return entity;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public bool Delete(TEntity entity)
@@ -44,7 +54,17 @@ namespace API.Repositories
 
         public bool Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Set<TEntity>().Update(entity);
+                context.SaveChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
