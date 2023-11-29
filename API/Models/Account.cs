@@ -6,6 +6,9 @@ namespace API.Models;
 [Table("tb_accounts")]
 public class Account : BaseEntity
 {
+    [Required, Column("email", TypeName = "nvarchar(100)")]
+    public string Email { get; set; }
+
     [Required, Column("password", TypeName = "nvarchar(max)")]
     public string Password { get; set; }
 

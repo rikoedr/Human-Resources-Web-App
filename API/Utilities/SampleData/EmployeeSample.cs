@@ -17,7 +17,6 @@ public class EmployeeSample
             BirthDate = new DateTime(1990, 5, 15),
             HiringDate = new DateTime(2020, 10, 1),
             Gender = Gender.Male,
-            Email = "john.doe@example.com",
             PhoneNumber = "+123456789",
             DepartmentGuid = DepartmentSample.Finance().Guid,
             JobGuid = JobSample.FinancialAnalyst().Guid
@@ -36,7 +35,6 @@ public class EmployeeSample
             BirthDate = new DateTime(1985, 8, 25),
             HiringDate = new DateTime(2019, 7, 15),
             Gender = Gender.Female,
-            Email = "jane.smith@example.com",
             PhoneNumber = "+987654321",
             DepartmentGuid = DepartmentSample.InformationTechnology().Guid,
             JobGuid = JobSample.SoftwareDeveloper().Guid
@@ -55,7 +53,6 @@ public class EmployeeSample
             BirthDate = new DateTime(1982, 3, 10),
             HiringDate = new DateTime(2018, 4, 20),
             Gender = Gender.Male,
-            Email = "bob.johnson@example.com",
             PhoneNumber = "+1122334455",
             DepartmentGuid = DepartmentSample.HumanResources().Guid,
             JobGuid = JobSample.RecruitmentSpecialist().Guid

@@ -24,9 +24,6 @@ public class Employee : BaseEntity
     [Required, Column("gender")]
     public Gender Gender { get; set; }
 
-    [Required, Column("email", TypeName = "nvarchar(50)")]
-    public string Email { get; set; }
-
     [Required, Column("phone_number", TypeName = "nvarchar(50)")]
     public string PhoneNumber { get; set; }
 

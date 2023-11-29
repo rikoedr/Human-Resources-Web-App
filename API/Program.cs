@@ -1,5 +1,7 @@
+using API.Contracts;
 using API.Data;
 using API.Models;
+using API.Repositories;
 using API.Utilities.SampleData;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -10,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<HumanResourcesDbContext>(options => options.UseSqlServer(connectionString));
 
+// Add repositories to container
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -23,7 +23,7 @@ public class HumanResourcesDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         // Set Constraint
-        modelBuilder.Entity<Employee>().HasIndex(e => e.Email).IsUnique();
+        modelBuilder.Entity<Account>().HasIndex(a => a.Email).IsUnique();
         modelBuilder.Entity<Employee>().HasIndex(e => e.PhoneNumber).IsUnique();
         modelBuilder.Entity<Department>().HasIndex(e => e.Name).IsUnique();
         modelBuilder.Entity<Role>().HasIndex(r => r.Name).IsUnique();
