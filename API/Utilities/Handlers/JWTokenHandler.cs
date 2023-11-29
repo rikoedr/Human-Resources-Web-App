@@ -58,6 +58,8 @@ public class JWTokenHandler : IJWTokenHandler
         {
             return new ClaimData();
         }
+
+        return new ClaimData();
     }
 
     public string Generate(IEnumerable<Claim> claims)

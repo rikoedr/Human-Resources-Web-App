@@ -8,8 +8,7 @@ public class AccountSample
     public static Account JohnDoe()
     {
         return new Account
-        {
-            Guid = EmployeeSample.JohnDoe().Guid,
+        {Guid = EmployeeSample.JohnDoe().Guid,
             CreatedDate = DateTime.Now,
             ModifiedDate = DateTime.Now,
             Email = "john.doe@example.com",
@@ -18,6 +17,7 @@ public class AccountSample
             OTP = 123456,
             OtpExpiredTime = DateTime.Now,
             Password = HashHandler.Password("abcd123456")
+            
         };
     }
 

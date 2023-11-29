@@ -14,15 +14,6 @@ public class ResponseOkHandler<TEntity>
 
     }
 
-    // Success response with data
-    public ResponseOkHandler(TEntity? data)
-    {
-        Code = StatusCodes.Status200OK;
-        Status = HttpStatusCode.OK.ToString();
-        Message = "Success to Retrieve Data";
-        Data = data;
-    }
-
     // Success response without data
     public ResponseOkHandler(string message)
     {

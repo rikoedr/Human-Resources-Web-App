@@ -16,4 +16,30 @@ public class ErrorResponse
 
         return response;
     }
+
+    public static ResponseErrorHandler DataNotFound(string error)
+    {
+        var response = new ResponseErrorHandler
+        {
+            Code = StatusCodes.Status404NotFound,
+            Status = HttpStatusCode.NotFound.ToString(),
+            Message = error
+        };
+
+        return response;
+    }
+
+    public static ResponseErrorHandler InternalServerError(string error)
+    {
+        var response = new ResponseErrorHandler
+        {
+            Code = StatusCodes.Status500InternalServerError,
+            Status = HttpStatusCode.InternalServerError.ToString(),
+            Message = "Request failed, there was an error on the server side",
+            Error = error
+        };
+
+        return response;
+    }
+
 }
