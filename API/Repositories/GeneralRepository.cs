@@ -19,17 +19,27 @@ namespace API.Repositories
 
         public bool Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Set<TEntity>().Remove(entity);
+                context.SaveChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Set<TEntity>().ToList();
         }
 
         public TEntity? GetByGuid(Guid guid)
         {
-            throw new NotImplementedException();
+            return context.Set<TEntity>().Find(guid);
         }
 
         public bool Update(TEntity entity)
