@@ -1,4 +1,4 @@
-﻿namespace API.DTOs.Auth;
+﻿namespace API.DTOs.AccountData;
 
 public class ClaimData
 {

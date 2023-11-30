@@ -23,6 +23,10 @@ builder.Services.AddScoped<IJobRepository, JobRepository>();
 builder.Services.AddScoped<IJobHistoryRepository, JobHistoryRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
+// Add email service
+builder.Services.AddTransient<IEmailHandler, EmailHandler>(_ => new EmailHandler(
+    builder.Configuration["SmtpService:Server"], Convert.ToInt32(builder.Configuration["SmtpService:Port"]), builder.Configuration["SmtpService:FromEmailAddress"]));
+
 // JWT Services
 builder.Services.AddScoped<IJWTokenHandler, JWTokenHandler>();
 

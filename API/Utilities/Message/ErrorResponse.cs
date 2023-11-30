@@ -17,13 +17,13 @@ public class ErrorResponse
         return response;
     }
 
-    public static ResponseErrorHandler DataNotFound(string error)
+    public static ResponseErrorHandler DataNotFound(string message)
     {
         var response = new ResponseErrorHandler
         {
             Code = StatusCodes.Status404NotFound,
             Status = HttpStatusCode.NotFound.ToString(),
-            Message = error
+            Message = message
         };
 
         return response;
@@ -37,6 +37,18 @@ public class ErrorResponse
             Status = HttpStatusCode.InternalServerError.ToString(),
             Message = "Request failed, there was an error on the server side",
             Error = error
+        };
+
+        return response;
+    }
+
+    public static ResponseErrorHandler Conflict(string message)
+    {
+        var response = new ResponseErrorHandler
+        {
+            Code = StatusCodes.Status409Conflict,
+            Status = HttpStatusCode.Conflict.ToString(),
+            Message = message
         };
 
         return response;

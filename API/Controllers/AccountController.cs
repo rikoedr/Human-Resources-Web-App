@@ -1,5 +1,5 @@
 ﻿using API.Contracts;
-using API.DTOs.Auth;
+using API.DTOs.AccountData;
 using API.Utilities.Handlers;
 using API.Utilities.Message;
 using Microsoft.AspNetCore.Mvc;
@@ -8,21 +8,23 @@ using System.Security.Claims;
 
 namespace API.Controllers;
 
-public class AuthController : ControllerBase
+public class AccountController : ControllerBase
 {
     private readonly IAccountRepository accountRepository;
     private readonly IAccountRoleRepository accountRoleRepository;
     private readonly IEmployeeRepository employeeRepository;
     private readonly IRoleRepository roleRepository;
     private readonly IJWTokenHandler tokenHandler;
+    private readonly IEmailHandler emailHandler;
 
-    public AuthController(IAccountRepository accountRepository, IAccountRoleRepository accountRoleRepository, IEmployeeRepository employeeRepository, IRoleRepository roleRepository, IJWTokenHandler tokenHandler)
+    public AccountController(IAccountRepository accountRepository, IAccountRoleRepository accountRoleRepository, IEmployeeRepository employeeRepository, IRoleRepository roleRepository, IJWTokenHandler tokenHandler, IEmailHandler emailHandler)
     {
         this.accountRepository = accountRepository;
         this.accountRoleRepository = accountRoleRepository;
         this.employeeRepository = employeeRepository;
         this.roleRepository = roleRepository;
         this.tokenHandler = tokenHandler;
+        this.emailHandler = emailHandler;
     }
 
     [HttpPost("login")]
@@ -68,5 +70,52 @@ public class AuthController : ControllerBase
 
         // Success login
         return Ok(new ResponseOkHandler<string>("Login Success", token));
+    }
+
+    [HttpPut("password")]
+    public IActionResult UpdatePassword(string password)
+    {
+        return Ok();
+    }
+
+    [HttpPost("password/reset")]
+    public IActionResult ResetPassword(ResetPasswordData resetPasswordData)
+    {
+        try
+        {
+            // Check email
+            var account = accountRepository.GetByEmail(resetPasswordData.Email);
+
+            if (account is null)
+            {
+                return NotFound(ErrorResponse.DataNotFound("Employee data not found for the specified email."));
+            }
+
+            // Generate otp
+            account.OTP = GenerateHandler.OTP();
+            account.OtpExpiredTime = DateTime.Now.AddMinutes(5);
+            account.IsOtpUsed = false;
+
+            // Update account OTP
+            bool isAccountOtpUpdated = accountRepository.Update(account);
+
+            if (!isAccountOtpUpdated)
+            {
+                throw new Exception("Failed to reset password / create OTP code.");
+            }
+
+            // Send OTP Code to Email
+            string emailResponse = $"Your OTP Code : {account.OTP}, Valid Until : {account.OtpExpiredTime}";
+
+            emailHandler.Send("Reset Password", emailResponse, resetPasswordData.Email);
+
+            // Send success response
+            return Ok(new ResponseOkHandler<string>($"OTP code sent to email. Valid until {account.OtpExpiredTime}."));
+        }
+        catch(Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ErrorResponse.InternalServerError(ex.Message));
+
+        }
     }
 }
