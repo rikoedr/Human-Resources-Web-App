@@ -1,5 +1,6 @@
 ﻿using API.Contracts;
 using API.Data;
+using API.Utilities;
 
 namespace API.Repositories
 {
@@ -12,18 +13,18 @@ namespace API.Repositories
             this.context = context;
         }
 
-        public TEntity? Create(TEntity entity)
+        public bool Create(TEntity entity)
         {
             try
             {
                 context.Set<TEntity>().Add(entity);
                 context.SaveChanges();
 
-                return entity;
+                return true;
             }
             catch
             {
-                return null;
+                return false;
             }
         }
 
@@ -61,8 +62,9 @@ namespace API.Repositories
 
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
+                ConsoleDebug.Print("REPOSITORY -> Exception", ex.Message);
                 return false;
             }
         }

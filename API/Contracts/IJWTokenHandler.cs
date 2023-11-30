@@ -1,4 +1,4 @@
-﻿using API.DTOs.Auth;
+﻿using API.DTOs.AccountData;
 using System.Security.Claims;
 
 namespace API.Contracts;

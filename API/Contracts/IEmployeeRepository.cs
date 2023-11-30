@@ -1,8 +1,10 @@
 ﻿using API.Models;
 
-namespace API.Contracts
+namespace API.Contracts;
+
+public interface IEmployeeRepository : IGeneralRepository<Employee>
 {
-    public interface IEmployeeRepository : IGeneralRepository<Employee>
-    {
-    }
+    public bool IsPhoneNumberRegistered(string phoneNumber);
+
 }
+

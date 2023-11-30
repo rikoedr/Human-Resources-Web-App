@@ -10,5 +10,10 @@ namespace API.Repositories
         {
 
         }
+
+        public Role? GetByName(string name)
+        {
+            return base.context.Set<Role>().FirstOrDefault(role => role.Name.ToLower() == name.ToLower());
+        }
     }
 }
