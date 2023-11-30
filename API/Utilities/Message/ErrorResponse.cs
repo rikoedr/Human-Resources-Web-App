@@ -54,4 +54,16 @@ public class ErrorResponse
         return response;
     }
 
+    public static ResponseErrorHandler Unauthorized(string message)
+    {
+        var response = new ResponseErrorHandler
+        {
+            Code = StatusCodes.Status401Unauthorized,
+            Status = HttpStatusCode.Unauthorized.ToString(),
+            Message = message
+        };
+
+        return response;
+    }
+
 }

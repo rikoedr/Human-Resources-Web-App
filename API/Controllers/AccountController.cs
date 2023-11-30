@@ -8,6 +8,8 @@ using System.Security.Claims;
 
 namespace API.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class AccountController : ControllerBase
 {
     private readonly IAccountRepository accountRepository;
@@ -73,9 +75,57 @@ public class AccountController : ControllerBase
     }
 
     [HttpPut("password")]
-    public IActionResult UpdatePassword(string password)
+    public IActionResult UpdatePassword(UpdatePasswordData updatePassword)
     {
-        return Ok();
+        try
+        {
+            // Get account by email
+            var account = accountRepository.GetByEmail(updatePassword.Email);
+
+            if (account is null)
+            {
+                return NotFound(ErrorResponse.DataNotFound("Employee data not found for the specified email."));
+            }
+
+            // Check OTP Expired 
+            bool isOtpExpired = account.OtpExpiredTime == DateTime.Now;
+
+            if (isOtpExpired)
+            {
+                return Unauthorized(ErrorResponse.Unauthorized("The OTP code has expired."));
+            }
+
+            // Check OTP code use status
+            if (account.IsOtpUsed)
+            {
+                return Unauthorized(ErrorResponse.Unauthorized("The OTP code has been used."));
+            }
+
+            // OTP Code validation
+            if (account.OTP != updatePassword.Otp)
+            {
+                return Unauthorized(ErrorResponse.Unauthorized("The OTP code is not valid."));
+            }
+
+            // Change Password
+            account.Password = HashHandler.Password(updatePassword.Password);
+            account.IsOtpUsed = true;
+            account.ModifiedDate = DateTime.Now;
+
+            bool isPasswordUpdated = accountRepository.Update(account);
+
+            if (!isPasswordUpdated)
+            {
+                throw new Exception("Failed to update account password");
+            }
+
+            // Success response
+            return Ok(OkResponse.SuccessRetrieveData());
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ErrorResponse.InternalServerError(ex.Message));
+        }
     }
 
     [HttpPost("password/reset")]
