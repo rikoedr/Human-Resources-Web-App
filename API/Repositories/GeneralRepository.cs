@@ -113,7 +113,7 @@ namespace API.Repositories
                 {
                     IsSuccess = false,
                     Exception = ex.InnerException.Message,
-                    Data = null
+                    Data = Enumerable.Empty<TEntity>()
                 };
             }
         }
