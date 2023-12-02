@@ -1,6 +1,7 @@
 ﻿using API.Contracts;
 using API.Data;
 using API.Utilities;
+using API.Utilities.Message;
 
 namespace API.Repositories
 {
@@ -13,39 +14,29 @@ namespace API.Repositories
             this.context = context;
         }
 
-        public bool Create(TEntity entity)
+        public RepositoryResult<string> Update(TEntity entity)
         {
             try
             {
-                context.Set<TEntity>().Add(entity);
+                context.Set<TEntity>().Update(entity);
                 context.SaveChanges();
 
-                return true;
+                return new RepositoryResult<string>()
+                {
+                    IsSuccess = true,
+                    Exception = Message.NoException,
+                    Data = Message.NoData
+                };
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                return new RepositoryResult<string>()
+                {
+                    IsSuccess = false,
+                    Exception = ex.InnerException.Message,
+                    Data = Message.NoData
+                };
             }
-        }
-
-        public bool Delete(TEntity entity)
-        {
-            try
-            {
-                context.Set<TEntity>().Remove(entity);
-                context.SaveChanges();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            return context.Set<TEntity>().ToList();
         }
 
         public TEntity? GetByGuid(Guid guid)
@@ -53,19 +44,101 @@ namespace API.Repositories
             return context.Set<TEntity>().Find(guid);
         }
 
-        public bool Update(TEntity entity)
+        public RepositoryResult<string> Create(TEntity entity)
         {
             try
             {
-                context.Set<TEntity>().Update(entity);
+                context.Set<TEntity>().Add(entity);
                 context.SaveChanges();
 
-                return true;
+                return new RepositoryResult<string>()
+                {
+                    IsSuccess = true,
+                    Exception = Message.NoException,
+                    Data = Message.NoData
+                };
             }
             catch(Exception ex)
             {
-                ConsoleDebug.Print("REPOSITORY -> Exception", ex.Message);
-                return false;
+                return new RepositoryResult<string>()
+                {
+                    IsSuccess = false,
+                    Exception = ex.InnerException.Message,
+                    Data = Message.NoData
+                };
+            }
+        }
+
+        public RepositoryResult<string> Delete(TEntity entity)
+        {
+            try
+            {
+                context.Set<TEntity>().Remove(entity);
+                context.SaveChanges();
+
+                return new RepositoryResult<string>()
+                {
+                    IsSuccess = true,
+                    Exception = Message.NoException,
+                    Data = Message.NoData
+                };
+            }
+            catch(Exception ex)
+            {
+                return new RepositoryResult<string>()
+                {
+                    IsSuccess = false,
+                    Exception = ex.InnerException.Message,
+                    Data = Message.NoData
+                };
+            }
+        }
+
+        public RepositoryResult<IEnumerable<TEntity>> GetAll()
+        {
+            try
+            {
+                var result = context.Set<TEntity>().ToList();
+
+                return new RepositoryResult<IEnumerable<TEntity>>()
+                {
+                    IsSuccess = true,
+                    Exception = Message.NoException,
+                    Data = result
+                };
+            }
+            catch(Exception ex)
+            {
+                return new RepositoryResult<IEnumerable<TEntity>>()
+                {
+                    IsSuccess = false,
+                    Exception = ex.InnerException.Message,
+                    Data = null
+                };
+            }
+        }
+
+        public RepositoryResult<TEntity> TakeById(Guid guid)
+        {
+            try
+            {
+                var result = context.Set<TEntity>().Find(guid);
+
+                return new RepositoryResult<TEntity>()
+                {
+                    IsSuccess = true,
+                    Exception = Message.NoException,
+                    Data = result
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RepositoryResult<TEntity>()
+                {
+                    IsSuccess = false,
+                    Exception = ex.InnerException.Message,
+                    Data = null
+                };
             }
         }
     }

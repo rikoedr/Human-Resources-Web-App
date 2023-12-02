@@ -26,8 +26,10 @@ public class HumanResourcesDbContext : DbContext
         modelBuilder.Entity<Account>().HasIndex(a => a.Email).IsUnique();
         modelBuilder.Entity<Employee>().HasIndex(e => e.PhoneNumber).IsUnique();
         modelBuilder.Entity<Department>().HasIndex(e => e.Name).IsUnique();
+        modelBuilder.Entity<Department>().HasIndex(e => e.Code).IsUnique();
         modelBuilder.Entity<Role>().HasIndex(r => r.Name).IsUnique();
         modelBuilder.Entity<Job>().HasIndex(j => j.Name).IsUnique();
+        modelBuilder.Entity<Job>().HasIndex(j => j.Code).IsUnique();
         modelBuilder.Entity<Department>().HasIndex(d => d.Code).IsUnique();
 
         // Set Cardinality

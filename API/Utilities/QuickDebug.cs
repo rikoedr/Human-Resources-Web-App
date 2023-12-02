@@ -2,7 +2,7 @@
 
 namespace API.Utilities;
 
-public class ConsoleDebug
+public class QuickDebug
 {
     public static void Print(string message, object obj)
     {

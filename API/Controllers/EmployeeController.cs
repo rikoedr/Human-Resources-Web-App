@@ -52,59 +52,85 @@ public class EmployeeController : ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        // Get all employee
-        var employees = employeeRepository.GetAll();
-
-        if (!employees.Any())
+        try
         {
-            return NotFound(ErrorResponse.DataNotFound("Employee data is empty!"));
+            // Get all employee
+            var getEmployees = employeeRepository.GetAll();
+
+            if (!getEmployees.IsSuccess)
+            {
+                throw new Exception(getEmployees.Exception);
+            }
+
+            if (!getEmployees.Data.Any())
+            {
+                return NotFound(ErrorResponse.DataNotFound("Employee data is empty!"));
+            }
+
+            // Get all account
+            var getAccounts = accountRepository.GetAll();
+
+            if (!getAccounts.IsSuccess)
+            {
+                throw new Exception(getAccounts.Exception);
+            }
+
+            // Get all department
+            var getDepartments = departmentRepository.GetAll();
+
+            if (!getDepartments.IsSuccess)
+            {
+                throw new Exception(getDepartments.Exception);
+            }
+
+            if (!getDepartments.Data.Any())
+            {
+                return NotFound(ErrorResponse.DataNotFound("Department data is empty!"));
+            }
+
+            // Get all job
+            var getJobs = jobRepository.GetAll();
+
+            if (!getJobs.IsSuccess)
+            {
+                throw new Exception(getJobs.Exception);
+            }
+
+            if (!getJobs.Data.Any())
+            {
+                return NotFound(ErrorResponse.DataNotFound("Job data is empty!"));
+            }
+
+            // Merge employee data
+            var employeeDetails = from employee in getEmployees.Data
+                                  join account in getAccounts.Data on employee.Guid equals account.Guid
+                                  join department in getDepartments.Data on employee.DepartmentGuid equals department.Guid
+                                  join job in getJobs.Data on employee.JobGuid equals job.Guid
+                                  select new EmployeeDetailData
+                                  {
+                                      Guid = employee.Guid,
+                                      CreatedDate = employee.CreatedDate,
+                                      ModifiedDate = employee.ModifiedDate,
+                                      FirstName = employee.FirstName,
+                                      LastName = employee.LastName,
+                                      BirthDate = employee.BirthDate,
+                                      HiringDate = employee.HiringDate,
+                                      Gender = employee.Gender,
+                                      Department = department.Name,
+                                      Job = job.Name,
+                                      Email = account.Email,
+                                      PhoneNumber = employee.PhoneNumber,
+                                      IsAccountDisabled = account.IsDisabled
+                                  };
+            // Success response
+            var response = new ResponseOkHandler<IEnumerable<EmployeeDetailData>>(Message.SuccessRetrieve, employeeDetails);
+
+            return Ok(response);
         }
-
-        // Get all account
-        var accounts = accountRepository.GetAll();
-
-        // Get all department
-        var departments = departmentRepository.GetAll();
-
-        if (!departments.Any())
+        catch(Exception ex)
         {
-            return NotFound(ErrorResponse.DataNotFound("Department data is empty!"));
+            return StatusCode(StatusCodes.Status500InternalServerError, ErrorResponse.InternalServerError(ex.Message));
         }
-
-        // Get all job
-        var jobs = jobRepository.GetAll();
-
-        if (!jobs.Any())
-        {
-            return NotFound(ErrorResponse.DataNotFound("Job data is empty!"));
-
-        }
-
-        // Merge employee data
-        var employeeDetails = from employee in employees
-                              join account in accounts on employee.Guid equals account.Guid
-                              join department in departments on employee.DepartmentGuid equals department.Guid
-                              join job in jobs on employee.JobGuid equals job.Guid
-                              select new EmployeeDetailData
-                              {
-                                  Guid = employee.Guid,
-                                  CreatedDate = employee.CreatedDate,
-                                  ModifiedDate = employee.ModifiedDate,
-                                  FirstName = employee.FirstName,
-                                  LastName = employee.LastName,
-                                  BirthDate = employee.BirthDate,
-                                  HiringDate = employee.HiringDate,
-                                  Gender = employee.Gender,
-                                  Department = department.Name,
-                                  Job = job.Name,
-                                  Email = account.Email,
-                                  PhoneNumber = employee.PhoneNumber,
-                                  IsAccountDisabled = account.IsDisabled
-                              };
-        // Success response
-        var response = new ResponseOkHandler<IEnumerable<EmployeeDetailData>>(Message.SuccessRetrieve, employeeDetails);
-
-        return Ok(response);
     }
 
     [HttpGet("{guid}")]
@@ -160,26 +186,30 @@ public class EmployeeController : ControllerBase
     [HttpDelete("{guid}")]
     public IActionResult Delete(Guid guid)
     {
-        // Check employee data avaialability
-        var employee = employeeRepository.GetByGuid(guid);
-
-        if (employee is null)
+        try
         {
-            return NotFound(ErrorResponse.DataNotFound(Message.EmployeeDataNotFound));
+            // Check employee data avaialability
+            var employee = employeeRepository.GetByGuid(guid);
+
+            if (employee is null)
+            {
+                return NotFound(ErrorResponse.DataNotFound(Message.EmployeeDataNotFound));
+            }
+
+            // Delete employee data
+            var deleteEmployee = employeeRepository.Delete(employee);
+
+            if (!deleteEmployee.IsSuccess)
+            {
+                throw new Exception(deleteEmployee.Exception);
+            }
+
+            return Ok(new ResponseOkHandler<string>("Employee data deleted successfully"));
         }
-
-        // Delete employee data
-        var isEmployeeDeleted = employeeRepository.Delete(employee);
-
-        if (!isEmployeeDeleted)
+        catch(Exception ex)
         {
-            return StatusCode(
-                StatusCodes.Status500InternalServerError,
-                ErrorResponse.InternalServerError("Failed to delete employee data")
-                );
+            return StatusCode(StatusCodes.Status500InternalServerError, ErrorResponse.InternalServerError(ex.Message));
         }
-
-        return Ok(new ResponseOkHandler<string>("Employee data deleted successfully"));
     }
 
     [HttpPost]
@@ -243,11 +273,11 @@ public class EmployeeController : ControllerBase
                 JobGuid = job.Guid
             };
 
-            var isEmployeeCreated = employeeRepository.Create(newEmployee);
+            var createEmployee = employeeRepository.Create(newEmployee);
 
-            if (!isEmployeeCreated)
+            if (!createEmployee.IsSuccess)
             {
-                throw new Exception("Failed to insert employee data.");
+                throw new Exception(createEmployee.Exception);
             }
 
             // Create account data
@@ -264,11 +294,11 @@ public class EmployeeController : ControllerBase
                 OtpExpiredTime = DateTime.Now
             };
 
-            var isAccountCreated = accountRepository.Create(newAccount);
+            var createAccount = accountRepository.Create(newAccount);
 
-            if (!isAccountCreated)
+            if (!createAccount.IsSuccess)
             {
-                throw new Exception("Failed to insert account data.");
+                throw new Exception(createAccount.Exception);
             }
 
             // Create account role data
@@ -281,11 +311,11 @@ public class EmployeeController : ControllerBase
                 RoleGuid = role.Guid
             };
 
-            var isAccountRoleCreated = accountRoleRepository.Create(newAccountRole);
+            var createAccountRole = accountRoleRepository.Create(newAccountRole);
 
-            if (!isAccountRoleCreated)
+            if (!createAccountRole.IsSuccess)
             {
-                throw new Exception("Failed to insert account role data.");
+                throw new Exception(createAccountRole.Exception);
             }
 
             // Create job history data
@@ -300,11 +330,11 @@ public class EmployeeController : ControllerBase
                 EndDate = null
             };
 
-            var isJobHistoryCreated = jobHistoryRepository.Create(newJobHistory);
+            var createJobHistory = jobHistoryRepository.Create(newJobHistory);
 
-            if (!isJobHistoryCreated)
+            if (!createJobHistory.IsSuccess)
             {
-                throw new Exception("Failed to insert job history data.");
+                throw new Exception(createJobHistory.Exception);
             }
 
             // Commit changes
@@ -313,11 +343,11 @@ public class EmployeeController : ControllerBase
             // Return success response
             return Ok(OkResponse.SuccessRetrieveData());
         }
-        catch
+        catch(Exception ex)
         {
             context.Database.RollbackTransaction();
 
-            return StatusCode(StatusCodes.Status500InternalServerError, ErrorResponse.InternalServerError("Failed to create employee"));
+            return StatusCode(StatusCodes.Status500InternalServerError, ErrorResponse.InternalServerError(ex.Message));
         }
     }
 
@@ -371,11 +401,11 @@ public class EmployeeController : ControllerBase
             employee.PhoneNumber = updateData.PhoneNumber;
             employee.Gender = updateData.Gender;
 
-            var isEmployeeUpdated = employeeRepository.Update(employee);
+            var updateEmployee = employeeRepository.Update(employee);
 
-            if(!isEmployeeUpdated)
+            if(!updateEmployee.IsSuccess)
             {
-                throw new Exception("Failed to update employee data.");
+                throw new Exception(updateEmployee.Exception);
             }
 
             // Update account data 
@@ -390,11 +420,11 @@ public class EmployeeController : ControllerBase
 
                 account.Email = updateData.Email;
 
-                var isEmailUpdated = accountRepository.Update(account);
+                var updateAccount = accountRepository.Update(account);
 
-                if (!isEmailUpdated)
+                if (!updateAccount.IsSuccess)
                 {
-                    throw new Exception("Failed to update employee account data.");
+                    throw new Exception(updateAccount.Exception);
                 }
             }
 

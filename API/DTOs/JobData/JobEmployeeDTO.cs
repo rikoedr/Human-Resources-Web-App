@@ -1,9 +1,8 @@
-﻿using API.Models;
-using API.Utilities;
+﻿using API.Utilities;
 
-namespace API.DTOs.EmployeeData;
+namespace API.DTOs.JobData;
 
-public class UpdateEmployeeData
+public class JobEmployeeDTO
 {
     public Guid Guid { get; set; }
     public string FirstName { get; set; }
@@ -13,7 +12,5 @@ public class UpdateEmployeeData
     public Gender Gender { get; set; }
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
-    public int DepartmentCode { get; set; }
-    public int JobCode { get; set; }
-    public string Role { get; set; }
+    public string Department { get; set; }
 }

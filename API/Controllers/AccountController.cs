@@ -32,46 +32,60 @@ public class AccountController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login(LoginData loginData)
     {
-        // Get account by email
-        var account = accountRepository.GetByEmail(loginData.Email);
-
-        // Account result handling
-        if(account is null)
+        try
         {
-            return Unauthorized(ErrorResponse.EmailPasswordInvalid());
+            // Get account by email
+            var account = accountRepository.GetByEmail(loginData.Email);
+
+            // Account result handling
+            if (account is null)
+            {
+                return Unauthorized(ErrorResponse.EmailPasswordInvalid());
+            }
+
+            // Validate password
+            var isPasswordValid = HashHandler.VerifyPassword(loginData.Password, account.Password);
+
+            if (!isPasswordValid)
+            {
+                return Unauthorized(ErrorResponse.EmailPasswordInvalid());
+            }
+
+            // Get account detailed data
+            var employee = employeeRepository.GetByGuid(account.Guid);
+
+            // Create JWT Token
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, account.Guid.ToString()));
+            claims.Add(new Claim(ClaimTypes.Email, account.Guid.ToString()));
+            claims.Add(new Claim(ClaimTypes.Name, employee.FirstName + " " + employee.LastName));
+
+            var getRoles = roleRepository.GetAll();
+
+            if (!getRoles.IsSuccess)
+            {
+                throw new Exception(getRoles.Exception);
+            }
+
+            var getAccountRoles = from ar in accountRoleRepository.GetByAccountGuid(account.Guid)
+                                  join r in getRoles.Data on ar.RoleGuid equals r.Guid
+                                  select r.Name;
+
+            foreach (string roleName in getAccountRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, roleName));
+            }
+
+            var token = tokenHandler.Generate(claims);
+
+
+            // Success login
+            return Ok(new ResponseOkHandler<string>("Login Success", token));
         }
-
-        // Validate password
-        var isPasswordValid = HashHandler.VerifyPassword(loginData.Password, account.Password);
-
-        if (!isPasswordValid)
+        catch(Exception ex)
         {
-            return Unauthorized(ErrorResponse.EmailPasswordInvalid());
+            return StatusCode(StatusCodes.Status500InternalServerError, ErrorResponse.InternalServerError(ex.Message));
         }
-
-        // Get account detailed data
-        var employee = employeeRepository.GetByGuid(account.Guid);
-
-        // Create JWT Token
-        List<Claim> claims = new List<Claim>();
-        claims.Add(new Claim(ClaimTypes.NameIdentifier, account.Guid.ToString()));
-        claims.Add(new Claim(ClaimTypes.Email, account.Guid.ToString()));
-        claims.Add(new Claim(ClaimTypes.Name, employee.FirstName + " " + employee.LastName));
-
-        var getAccountRoles = from ar in accountRoleRepository.GetByAccountGuid(account.Guid)
-                              join r in roleRepository.GetAll() on ar.RoleGuid equals r.Guid
-                              select r.Name;
-
-        foreach(string roleName in getAccountRoles)
-        {
-            claims.Add(new Claim(ClaimTypes.Role, roleName));
-        }
-
-        var token = tokenHandler.Generate(claims);
-
-
-        // Success login
-        return Ok(new ResponseOkHandler<string>("Login Success", token));
     }
 
     [HttpPut("password")]
@@ -112,11 +126,11 @@ public class AccountController : ControllerBase
             account.IsOtpUsed = true;
             account.ModifiedDate = DateTime.Now;
 
-            bool isPasswordUpdated = accountRepository.Update(account);
+            var updateAccountPassword = accountRepository.Update(account);
 
-            if (!isPasswordUpdated)
+            if (!updateAccountPassword.IsSuccess)
             {
-                throw new Exception("Failed to update account password");
+                throw new Exception(updateAccountPassword.Exception);
             }
 
             // Success response
@@ -147,11 +161,11 @@ public class AccountController : ControllerBase
             account.IsOtpUsed = false;
 
             // Update account OTP
-            bool isAccountOtpUpdated = accountRepository.Update(account);
+            var updateAccountOtp = accountRepository.Update(account);
 
-            if (!isAccountOtpUpdated)
+            if (!updateAccountOtp.IsSuccess)
             {
-                throw new Exception("Failed to reset password / create OTP code.");
+                throw new Exception(updateAccountOtp.Exception);
             }
 
             // Send OTP Code to Email

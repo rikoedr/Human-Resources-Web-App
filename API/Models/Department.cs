@@ -7,7 +7,7 @@ namespace API.Models;
 public class Department : BaseEntity
 {
     [Required, Column("code", TypeName = "nvarchar(2)")]
-    public string Code { get; set; }
+    public int Code { get; set; }
 
     [Required, Column("name", TypeName = "nvarchar(30)")]
     public string Name { get; set; }

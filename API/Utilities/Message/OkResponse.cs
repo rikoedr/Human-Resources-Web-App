@@ -10,4 +10,11 @@ public class OkResponse
 
         return response;
     }
+
+    public static ResponseOkHandler<object> DataDeletedSuccessfully()
+    {
+        var response = new ResponseOkHandler<object>("Data deleted successfully.");
+
+        return response;
+    }
 }

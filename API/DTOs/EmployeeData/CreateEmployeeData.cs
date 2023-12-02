@@ -15,7 +15,7 @@ public class CreateEmployeeData
     public string Password { get; set; }
     public string ConfirmPassword { get; set; }
 
-    public string DepartmentCode { get; set; }
-    public string JobCode { get; set; }
+    public int DepartmentCode { get; set; }
+    public int JobCode { get; set; }
     public string Role { get; set; }
 }

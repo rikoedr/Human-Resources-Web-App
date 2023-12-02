@@ -11,9 +11,9 @@ public class DepartmentRepository : GeneralRepository<Department>, IDepartmentRe
     {
     }
 
-    public Department? GetByCode(string code)
+    public Department? GetByCode(int code)
     {
-        return base.context.Set<Department>().FirstOrDefault(department => department.Code.ToLower() == code.ToLower());
+        return base.context.Set<Department>().FirstOrDefault(department => department.Code == code);
     }
 
     public Department? GetByName(string name)

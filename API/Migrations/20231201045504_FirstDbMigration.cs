@@ -88,6 +88,7 @@ namespace API.Migrations
                 columns: table => new
                 {
                     guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     is_disabled = table.Column<bool>(type: "bit", nullable: false),
                     otp = table.Column<int>(type: "int", nullable: false),
@@ -127,7 +128,6 @@ namespace API.Migrations
                     birth_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     hiring_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     gender = table.Column<int>(type: "int", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     phone_number = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     department_guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     job_guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -156,9 +156,9 @@ namespace API.Migrations
                 columns: new[] { "guid", "code", "created_date", "manager_guid", "modified_date", "name" },
                 values: new object[,]
                 {
-                    { new Guid("7644ad73-57b6-4640-9e8d-f929ba01e694"), "01", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3181), null, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3187), "Finance" },
-                    { new Guid("9e0e4c05-cde2-4900-88f9-2a2b8ee0dad6"), "06", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3190), null, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3191), "Information Technology" },
-                    { new Guid("e8246140-6e0a-488e-b451-9321b6694736"), "07", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3193), null, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3194), "Human Resources" }
+                    { new Guid("7644ad73-57b6-4640-9e8d-f929ba01e694"), "1", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8812), null, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8817), "Finance" },
+                    { new Guid("9e0e4c05-cde2-4900-88f9-2a2b8ee0dad6"), "6", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8820), null, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8820), "Information Technology" },
+                    { new Guid("e8246140-6e0a-488e-b451-9321b6694736"), "7", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8822), null, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8823), "Human Resources" }
                 });
 
             migrationBuilder.InsertData(
@@ -166,9 +166,9 @@ namespace API.Migrations
                 columns: new[] { "guid", "code", "created_date", "max_salary", "min_salary", "modified_date", "name" },
                 values: new object[,]
                 {
-                    { new Guid("1105117d-ed96-4206-bd43-0e13b7342770"), "101", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3299), 7500000, 5000000, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3299), "Financial Analyst" },
-                    { new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"), "601", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3303), 8000000, 6000000, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3304), "Software Developer" },
-                    { new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"), "701", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3307), 7000000, 5000000, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3307), "Recruitment Specialist" }
+                    { new Guid("1105117d-ed96-4206-bd43-0e13b7342770"), "101", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9030), 7500000, 5000000, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9031), "Financial Analyst" },
+                    { new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"), "601", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9034), 8000000, 6000000, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9034), "Software Developer" },
+                    { new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"), "701", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9037), 7000000, 5000000, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9037), "Recruitment Specialist" }
                 });
 
             migrationBuilder.InsertData(
@@ -176,60 +176,60 @@ namespace API.Migrations
                 columns: new[] { "guid", "created_date", "modified_date", "name" },
                 values: new object[,]
                 {
-                    { new Guid("8d1da011-8574-4be4-9f64-657254f764d6"), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3330), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3330), "Manager" },
-                    { new Guid("aad98c8c-c71e-46f4-99c1-2d073ecb467f"), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3327), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3327), "Staff" },
-                    { new Guid("aca8df20-f7d1-464c-947a-b22bc96c2394"), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3334), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3335), "Admin" }
+                    { new Guid("8d1da011-8574-4be4-9f64-657254f764d6"), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9060), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9061), "Manager" },
+                    { new Guid("aad98c8c-c71e-46f4-99c1-2d073ecb467f"), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9056), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9057), "Staff" },
+                    { new Guid("aca8df20-f7d1-464c-947a-b22bc96c2394"), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9062), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9063), "Admin" }
                 });
 
             migrationBuilder.InsertData(
                 table: "tb_employees",
-                columns: new[] { "guid", "birth_date", "created_date", "department_guid", "email", "first_name", "gender", "hiring_date", "job_guid", "last_name", "modified_date", "phone_number" },
-                values: new object[] { new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3350), new Guid("7644ad73-57b6-4640-9e8d-f929ba01e694"), "john.doe@example.com", "John", 1, new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("1105117d-ed96-4206-bd43-0e13b7342770"), "Doe", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3351), "+123456789" });
+                columns: new[] { "guid", "birth_date", "created_date", "department_guid", "first_name", "gender", "hiring_date", "job_guid", "last_name", "modified_date", "phone_number" },
+                values: new object[] { new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9079), new Guid("7644ad73-57b6-4640-9e8d-f929ba01e694"), "John", 1, new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("1105117d-ed96-4206-bd43-0e13b7342770"), "Doe", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9079), "+123456789" });
 
             migrationBuilder.InsertData(
                 table: "tb_employees",
-                columns: new[] { "guid", "birth_date", "created_date", "department_guid", "email", "first_name", "gender", "hiring_date", "job_guid", "last_name", "modified_date", "phone_number" },
-                values: new object[] { new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(1985, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3362), new Guid("9e0e4c05-cde2-4900-88f9-2a2b8ee0dad6"), "jane.smith@example.com", "Jane", 0, new DateTime(2019, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"), "Smith", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3363), "+987654321" });
+                columns: new[] { "guid", "birth_date", "created_date", "department_guid", "first_name", "gender", "hiring_date", "job_guid", "last_name", "modified_date", "phone_number" },
+                values: new object[] { new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(1985, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9091), new Guid("9e0e4c05-cde2-4900-88f9-2a2b8ee0dad6"), "Jane", 0, new DateTime(2019, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"), "Smith", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9092), "+987654321" });
 
             migrationBuilder.InsertData(
                 table: "tb_employees",
-                columns: new[] { "guid", "birth_date", "created_date", "department_guid", "email", "first_name", "gender", "hiring_date", "job_guid", "last_name", "modified_date", "phone_number" },
-                values: new object[] { new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), new DateTime(1982, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3370), new Guid("e8246140-6e0a-488e-b451-9321b6694736"), "bob.johnson@example.com", "Bob", 1, new DateTime(2018, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"), "Johnson", new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3370), "+1122334455" });
+                columns: new[] { "guid", "birth_date", "created_date", "department_guid", "first_name", "gender", "hiring_date", "job_guid", "last_name", "modified_date", "phone_number" },
+                values: new object[] { new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), new DateTime(1982, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9098), new Guid("e8246140-6e0a-488e-b451-9321b6694736"), "Bob", 1, new DateTime(2018, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"), "Johnson", new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9098), "+1122334455" });
 
             migrationBuilder.InsertData(
                 table: "job_history",
                 columns: new[] { "guid", "created_date", "employee_guid", "end_date", "job_guid", "modified_date", "start_date" },
                 values: new object[,]
                 {
-                    { new Guid("21caa0f5-0386-4642-a4fd-eb1c02cabfb7"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7303), new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), null, new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7304), new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("430613f7-7919-4140-84f4-e69957fc6d18"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7277), new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), null, new Guid("1105117d-ed96-4206-bd43-0e13b7342770"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7277), new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("b41980c1-b5d8-4e55-b1cb-b31ba5258062"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7287), new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7287), new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("0fbe1e2b-60a5-4939-bfbb-00bcb5980e7b"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1254), new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), null, new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1255), new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("53d9dd0f-7d95-4b80-8575-d78da82ccb38"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1131), new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1131), new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("b7e4e38c-58c6-459f-915b-1652ef61b121"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1106), new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), null, new Guid("1105117d-ed96-4206-bd43-0e13b7342770"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1107), new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "tb_accounts",
-                columns: new[] { "guid", "created_date", "is_disabled", "is_otp_used", "modified_date", "otp", "otp_expired_time", "password" },
+                columns: new[] { "guid", "created_date", "email", "is_disabled", "is_otp_used", "modified_date", "otp", "otp_expired_time", "password" },
                 values: new object[,]
                 {
-                    { new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3428), false, true, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3428), 123456, new DateTime(2023, 11, 28, 15, 56, 31, 266, DateTimeKind.Local).AddTicks(3430), "$2a$12$8fjEx9lE0OJb7VM9BywuiOPOgjyrDakSF4st7pfN6t168UYjCkUhK" },
-                    { new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(2023, 11, 28, 15, 56, 31, 557, DateTimeKind.Local).AddTicks(9222), false, true, new DateTime(2023, 11, 28, 15, 56, 31, 557, DateTimeKind.Local).AddTicks(9223), 123456, new DateTime(2023, 11, 28, 15, 56, 31, 557, DateTimeKind.Local).AddTicks(9224), "$2a$12$QeHrOplxXxXVXimRWOhq.eVY0PmHHmPnteeWw7J7CZUvQ.2W3Llgy" },
-                    { new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), new DateTime(2023, 11, 28, 15, 56, 31, 853, DateTimeKind.Local).AddTicks(7979), false, true, new DateTime(2023, 11, 28, 15, 56, 31, 853, DateTimeKind.Local).AddTicks(7979), 123456, new DateTime(2023, 11, 28, 15, 56, 31, 853, DateTimeKind.Local).AddTicks(7981), "$2a$12$W1Qt0xvWfhrvXPVW7RiPiesGggw.T8/vamQm7u3Cl0LcSI..zde8a" }
+                    { new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9125), "john.doe@example.com", false, true, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9125), 123456, new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9126), "$2a$12$jslOxOuU.j/SNqVSn8U7uO6hPClLqDrSkIG2HqehAO8KXqccPEd56" },
+                    { new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(2023, 12, 1, 12, 55, 3, 888, DateTimeKind.Local).AddTicks(6082), "jane.smith@example.com", false, true, new DateTime(2023, 12, 1, 12, 55, 3, 888, DateTimeKind.Local).AddTicks(6082), 123456, new DateTime(2023, 12, 1, 12, 55, 3, 888, DateTimeKind.Local).AddTicks(6084), "$2a$12$EOevB79YWIbD7HGLr1qkQOH9R2fjFagXJer0rSQvFtcGAd3zlNDL2" },
+                    { new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), new DateTime(2023, 12, 1, 12, 55, 4, 175, DateTimeKind.Local).AddTicks(1351), "bob.johnson@example.com", false, true, new DateTime(2023, 12, 1, 12, 55, 4, 175, DateTimeKind.Local).AddTicks(1352), 123456, new DateTime(2023, 12, 1, 12, 55, 4, 175, DateTimeKind.Local).AddTicks(1354), "$2a$12$YEGXp/DdCUMNPt.aho.xLe7yV2ky8Pv70vH.XYTHKYKy9CD3MrQmG" }
                 });
 
             migrationBuilder.InsertData(
                 table: "tb_account_roles",
                 columns: new[] { "guid", "account_guid", "created_date", "modified_date", "role_guid" },
-                values: new object[] { new Guid("21b7f5a1-2440-48bf-839d-58e54a217767"), new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7125), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7135), new Guid("aad98c8c-c71e-46f4-99c1-2d073ecb467f") });
+                values: new object[] { new Guid("c4fdbdc9-a09d-4be0-979c-3755d3a5a7a9"), new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1065), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1065), new Guid("8d1da011-8574-4be4-9f64-657254f764d6") });
 
             migrationBuilder.InsertData(
                 table: "tb_account_roles",
                 columns: new[] { "guid", "account_guid", "created_date", "modified_date", "role_guid" },
-                values: new object[] { new Guid("4b22fe67-6317-43c3-b1c7-fbce518d6e54"), new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7218), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7218), new Guid("8d1da011-8574-4be4-9f64-657254f764d6") });
+                values: new object[] { new Guid("f9c54ab3-caef-4b0c-8ce2-906d59f802b3"), new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1012), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1017), new Guid("aad98c8c-c71e-46f4-99c1-2d073ecb467f") });
 
             migrationBuilder.InsertData(
                 table: "tb_account_roles",
                 columns: new[] { "guid", "account_guid", "created_date", "modified_date", "role_guid" },
-                values: new object[] { new Guid("f32701bd-f7fb-4034-80fc-2e07199c68d0"), new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7237), new DateTime(2023, 11, 28, 15, 56, 32, 140, DateTimeKind.Local).AddTicks(7237), new Guid("aca8df20-f7d1-464c-947a-b22bc96c2394") });
+                values: new object[] { new Guid("fbe2c312-7e04-433c-ba38-b8cad2ce6cd8"), new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1080), new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1080), new Guid("aca8df20-f7d1-464c-947a-b22bc96c2394") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_job_history_employee_guid",
@@ -250,6 +250,12 @@ namespace API.Migrations
                 name: "IX_tb_account_roles_role_guid",
                 table: "tb_account_roles",
                 column: "role_guid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb_accounts_email",
+                table: "tb_accounts",
+                column: "email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tb_departments_code",
@@ -276,12 +282,6 @@ namespace API.Migrations
                 column: "department_guid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_employees_email",
-                table: "tb_employees",
-                column: "email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_tb_employees_job_guid",
                 table: "tb_employees",
                 column: "job_guid");
@@ -290,6 +290,12 @@ namespace API.Migrations
                 name: "IX_tb_employees_phone_number",
                 table: "tb_employees",
                 column: "phone_number",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb_jobs_code",
+                table: "tb_jobs",
+                column: "code",
                 unique: true);
 
             migrationBuilder.CreateIndex(

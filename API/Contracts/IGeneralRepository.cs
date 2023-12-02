@@ -1,10 +1,13 @@
-﻿namespace API.Contracts;
+﻿using API.Utilities;
+
+namespace API.Contracts;
 
 public interface IGeneralRepository<TEntity>
 {
-    IEnumerable<TEntity> GetAll();
     TEntity? GetByGuid(Guid guid);
-    bool Create(TEntity entity);
-    bool Update(TEntity entity);
-    bool Delete(TEntity entity);
+    RepositoryResult<TEntity> TakeById(Guid guid);
+    RepositoryResult<string> Update(TEntity entity);
+    RepositoryResult<string> Create(TEntity entity);
+    RepositoryResult<string> Delete(TEntity entity);
+    RepositoryResult<IEnumerable<TEntity>> GetAll();
 }

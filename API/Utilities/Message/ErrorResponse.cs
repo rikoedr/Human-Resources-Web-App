@@ -54,6 +54,19 @@ public class ErrorResponse
         return response;
     }
 
+    public static ResponseErrorHandler Conflict(string message, string error)
+    {
+        var response = new ResponseErrorHandler
+        {
+            Code = StatusCodes.Status409Conflict,
+            Status = HttpStatusCode.Conflict.ToString(),
+            Message = message,
+            Error = error
+        };
+
+        return response;
+    }
+
     public static ResponseErrorHandler Unauthorized(string message)
     {
         var response = new ResponseErrorHandler

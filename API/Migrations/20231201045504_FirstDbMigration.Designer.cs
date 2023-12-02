@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(HumanResourcesDbContext))]
-    [Migration("20231128102028_SecondDbMigration")]
-    partial class SecondDbMigration
+    [Migration("20231201045504_FirstDbMigration")]
+    partial class FirstDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,38 +75,38 @@ namespace API.Migrations
                         new
                         {
                             Guid = new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4838),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9125),
                             Email = "john.doe@example.com",
                             IsDisabled = false,
                             IsOtpUsed = true,
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4839),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9125),
                             OTP = 123456,
-                            OtpExpiredTime = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4840),
-                            Password = "$2a$12$mvo2XQ5OGmiYMXdhsNEv5uHtl2D0BVfz/yEaZO6xmPtJzQgoJIFEm"
+                            OtpExpiredTime = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9126),
+                            Password = "$2a$12$jslOxOuU.j/SNqVSn8U7uO6hPClLqDrSkIG2HqehAO8KXqccPEd56"
                         },
                         new
                         {
                             Guid = new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 610, DateTimeKind.Local).AddTicks(6064),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 888, DateTimeKind.Local).AddTicks(6082),
                             Email = "jane.smith@example.com",
                             IsDisabled = false,
                             IsOtpUsed = true,
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 610, DateTimeKind.Local).AddTicks(6065),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 888, DateTimeKind.Local).AddTicks(6082),
                             OTP = 123456,
-                            OtpExpiredTime = new DateTime(2023, 11, 28, 18, 20, 27, 610, DateTimeKind.Local).AddTicks(6066),
-                            Password = "$2a$12$2HIg78Ra3XYp3OgNYlKo0.rdcVkESeGojVEp0mrMKwaQDU5dGbXRW"
+                            OtpExpiredTime = new DateTime(2023, 12, 1, 12, 55, 3, 888, DateTimeKind.Local).AddTicks(6084),
+                            Password = "$2a$12$EOevB79YWIbD7HGLr1qkQOH9R2fjFagXJer0rSQvFtcGAd3zlNDL2"
                         },
                         new
                         {
                             Guid = new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 908, DateTimeKind.Local).AddTicks(121),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 4, 175, DateTimeKind.Local).AddTicks(1351),
                             Email = "bob.johnson@example.com",
                             IsDisabled = false,
                             IsOtpUsed = true,
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 908, DateTimeKind.Local).AddTicks(122),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 4, 175, DateTimeKind.Local).AddTicks(1352),
                             OTP = 123456,
-                            OtpExpiredTime = new DateTime(2023, 11, 28, 18, 20, 27, 908, DateTimeKind.Local).AddTicks(123),
-                            Password = "$2a$12$dE8nYE5UDZUyI3F78G/96.CncktYpQSYXLhkM5TuuWQuJBjpSeis6"
+                            OtpExpiredTime = new DateTime(2023, 12, 1, 12, 55, 4, 175, DateTimeKind.Local).AddTicks(1354),
+                            Password = "$2a$12$YEGXp/DdCUMNPt.aho.xLe7yV2ky8Pv70vH.XYTHKYKy9CD3MrQmG"
                         });
                 });
 
@@ -144,26 +144,26 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("914ae5ba-a980-46e7-927c-71f82589157b"),
+                            Guid = new Guid("f9c54ab3-caef-4b0c-8ce2-906d59f802b3"),
                             AccountGuid = new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(3931),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(3936),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1012),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1017),
                             RoleGuid = new Guid("aad98c8c-c71e-46f4-99c1-2d073ecb467f")
                         },
                         new
                         {
-                            Guid = new Guid("ca3c3fef-ed8c-4c2e-a8e3-5810afeaee74"),
+                            Guid = new Guid("c4fdbdc9-a09d-4be0-979c-3755d3a5a7a9"),
                             AccountGuid = new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(3975),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(3976),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1065),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1065),
                             RoleGuid = new Guid("8d1da011-8574-4be4-9f64-657254f764d6")
                         },
                         new
                         {
-                            Guid = new Guid("06142e7c-a9ef-47bc-9c7a-87553b5d3b8d"),
+                            Guid = new Guid("fbe2c312-7e04-433c-ba38-b8cad2ce6cd8"),
                             AccountGuid = new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4003),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4003),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1080),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1080),
                             RoleGuid = new Guid("aca8df20-f7d1-464c-947a-b22bc96c2394")
                         });
                 });
@@ -215,25 +215,25 @@ namespace API.Migrations
                         new
                         {
                             Guid = new Guid("7644ad73-57b6-4640-9e8d-f929ba01e694"),
-                            Code = "01",
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4583),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4595),
+                            Code = "1",
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8812),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8817),
                             Name = "Finance"
                         },
                         new
                         {
                             Guid = new Guid("9e0e4c05-cde2-4900-88f9-2a2b8ee0dad6"),
-                            Code = "06",
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4597),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4598),
+                            Code = "6",
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8820),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8820),
                             Name = "Information Technology"
                         },
                         new
                         {
                             Guid = new Guid("e8246140-6e0a-488e-b451-9321b6694736"),
-                            Code = "07",
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4600),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4600),
+                            Code = "7",
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8822),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(8823),
                             Name = "Human Resources"
                         });
                 });
@@ -303,42 +303,42 @@ namespace API.Migrations
                         {
                             Guid = new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"),
                             BirthDate = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4788),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9079),
                             DepartmentGuid = new Guid("7644ad73-57b6-4640-9e8d-f929ba01e694"),
                             FirstName = "John",
                             Gender = 1,
                             HiringDate = new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             JobGuid = new Guid("1105117d-ed96-4206-bd43-0e13b7342770"),
                             LastName = "Doe",
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4788),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9079),
                             PhoneNumber = "+123456789"
                         },
                         new
                         {
                             Guid = new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"),
                             BirthDate = new DateTime(1985, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4799),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9091),
                             DepartmentGuid = new Guid("9e0e4c05-cde2-4900-88f9-2a2b8ee0dad6"),
                             FirstName = "Jane",
                             Gender = 0,
                             HiringDate = new DateTime(2019, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             JobGuid = new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"),
                             LastName = "Smith",
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4800),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9092),
                             PhoneNumber = "+987654321"
                         },
                         new
                         {
                             Guid = new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"),
                             BirthDate = new DateTime(1982, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4807),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9098),
                             DepartmentGuid = new Guid("e8246140-6e0a-488e-b451-9321b6694736"),
                             FirstName = "Bob",
                             Gender = 1,
                             HiringDate = new DateTime(2018, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             JobGuid = new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"),
                             LastName = "Johnson",
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4807),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9098),
                             PhoneNumber = "+1122334455"
                         });
                 });
@@ -378,6 +378,9 @@ namespace API.Migrations
 
                     b.HasKey("Guid");
 
+                    b.HasIndex("Code")
+                        .IsUnique();
+
                     b.HasIndex("Name")
                         .IsUnique();
 
@@ -388,30 +391,30 @@ namespace API.Migrations
                         {
                             Guid = new Guid("1105117d-ed96-4206-bd43-0e13b7342770"),
                             Code = "101",
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4732),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9030),
                             MaxSalary = 7500000,
                             MinSalary = 5000000,
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4733),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9031),
                             Name = "Financial Analyst"
                         },
                         new
                         {
                             Guid = new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"),
                             Code = "601",
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4736),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9034),
                             MaxSalary = 8000000,
                             MinSalary = 6000000,
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4736),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9034),
                             Name = "Software Developer"
                         },
                         new
                         {
                             Guid = new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"),
                             Code = "701",
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4739),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9037),
                             MaxSalary = 7000000,
                             MinSalary = 5000000,
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4739),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9037),
                             Name = "Recruitment Specialist"
                         });
                 });
@@ -458,30 +461,30 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("9942b924-53cd-4c27-9ca3-e46bca92b75a"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4126),
+                            Guid = new Guid("b7e4e38c-58c6-459f-915b-1652ef61b121"),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1106),
                             EmployeeGuid = new Guid("03e53d0a-09fe-42d3-80eb-3a80339f679d"),
                             JobGuid = new Guid("1105117d-ed96-4206-bd43-0e13b7342770"),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4127),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1107),
                             StartDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Guid = new Guid("17fe41e0-8f89-4dd9-b428-0df82f511eb5"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4137),
+                            Guid = new Guid("53d9dd0f-7d95-4b80-8575-d78da82ccb38"),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1131),
                             EmployeeGuid = new Guid("0c05eaec-3052-40b2-badd-8e69153a8c50"),
                             EndDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             JobGuid = new Guid("25abd2bc-c0fe-411a-ba24-f26cbae523c2"),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4137),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1131),
                             StartDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Guid = new Guid("5c3d8c03-561d-48f4-815e-6a5517ff9cd5"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4150),
+                            Guid = new Guid("0fbe1e2b-60a5-4939-bfbb-00bcb5980e7b"),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1254),
                             EmployeeGuid = new Guid("5bc27f65-a3ec-41cf-a1a7-701b4b674653"),
                             JobGuid = new Guid("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 28, 189, DateTimeKind.Local).AddTicks(4150),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 4, 464, DateTimeKind.Local).AddTicks(1255),
                             StartDate = new DateTime(2018, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -517,22 +520,22 @@ namespace API.Migrations
                         new
                         {
                             Guid = new Guid("aad98c8c-c71e-46f4-99c1-2d073ecb467f"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4762),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4763),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9056),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9057),
                             Name = "Staff"
                         },
                         new
                         {
                             Guid = new Guid("8d1da011-8574-4be4-9f64-657254f764d6"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4766),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4766),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9060),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9061),
                             Name = "Manager"
                         },
                         new
                         {
                             Guid = new Guid("aca8df20-f7d1-464c-947a-b22bc96c2394"),
-                            CreatedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4769),
-                            ModifiedDate = new DateTime(2023, 11, 28, 18, 20, 27, 314, DateTimeKind.Local).AddTicks(4769),
+                            CreatedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9062),
+                            ModifiedDate = new DateTime(2023, 12, 1, 12, 55, 3, 600, DateTimeKind.Local).AddTicks(9063),
                             Name = "Admin"
                         });
                 });

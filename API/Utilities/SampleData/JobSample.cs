@@ -9,7 +9,7 @@ public class JobSample
         return new Job
         {
             Guid = Guid.Parse("1105117d-ed96-4206-bd43-0e13b7342770"),
-            Code = "101",
+            Code = 101,
             CreatedDate = DateTime.Now,
             ModifiedDate = DateTime.Now,
             Name = "Financial Analyst",
@@ -23,7 +23,7 @@ public class JobSample
         return new Job
         {
             Guid = Guid.Parse("25abd2bc-c0fe-411a-ba24-f26cbae523c2"),
-            Code = "601",
+            Code = 601,
             CreatedDate = DateTime.Now,
             ModifiedDate = DateTime.Now,
             Name = "Software Developer",
@@ -37,7 +37,7 @@ public class JobSample
         return new Job
         {
             Guid = Guid.Parse("a3b9dd56-768a-45f7-99e1-8b42e9c8847f"),
-            Code = "701",
+            Code = 701,
             CreatedDate = DateTime.Now,
             ModifiedDate = DateTime.Now,
             Name = "Recruitment Specialist",
