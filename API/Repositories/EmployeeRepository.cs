@@ -12,6 +12,30 @@ public class EmployeeRepository : GeneralRepository<Employee>, IEmployeeReposito
     {
     }
 
+    public RepositoryResult<IEnumerable<Employee>> GetByDepartment(Guid departmentGuid)
+    {
+        try
+        {
+            var result = base.context.Set<Employee>().Where(item => item.DepartmentGuid == departmentGuid);
+
+            return new RepositoryResult<IEnumerable<Employee>>
+            {
+                IsSuccess = true,
+                Exception = Message.NoException,
+                Data = result
+            };
+        }
+        catch(Exception ex)
+        {
+            return new RepositoryResult<IEnumerable<Employee>>
+            {
+                IsSuccess = false,
+                Exception = ex.InnerException.Message,
+                Data = Enumerable.Empty<Employee>()
+            };
+        }
+    }
+
     public RepositoryResult<IEnumerable<Employee>> GetByJob(Guid jobGuid)
     {
         try

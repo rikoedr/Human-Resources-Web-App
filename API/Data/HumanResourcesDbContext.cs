@@ -51,7 +51,8 @@ public class HumanResourcesDbContext : DbContext
         modelBuilder.Entity<Department>()
             .HasMany(d => d.Employees)
             .WithOne(e => e.Department)
-            .HasForeignKey(e => e.DepartmentGuid);
+            .HasForeignKey(e => e.DepartmentGuid)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Department>()
             .HasOne(d => d.Manager)
